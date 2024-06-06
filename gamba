@@ -1,0 +1,59 @@
+import random
+suits = ['d','c','h','s']
+nums = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
+deck = [(num, suit) for suit in suits for num in nums]
+
+hands = [[],[],[],[]]
+
+def drawCard(hand):
+    deck_size = len(deck)
+    rand_card_i = random.randint(1,deck_size)
+    rand_card = deck.pop(rand_card_i)
+    return hand.append(rand_card)
+
+def drawCards(hand, num_cards):
+    for i in range(num_cards):
+        hand = drawCard(hand)
+    return hand
+
+straights = [[num1+num2+1 for num1 in range(5)] for num2 in range(8)]
+straights.append([10,11,12,13,1])
+
+def straightCheck(hand):
+    matches = [0 for i in range(9)]
+    for i, straight in enumerate(straights):
+        for straight_check_num in 
+
+def hand_AI(hand):
+    #check for pairs and trips
+    card_memory = []
+    pair_flag = False
+    pair_memory = []
+    trip_flag = False
+    
+    for card in hand:
+        if card[0] in pair_memory:
+            trip_flag = True
+
+        if card[0] in card_memory:
+            pair_flag = True
+            pair_memory.append(card[0])
+
+        card_memory.append(card[0])
+    
+    #pair > anything but one off
+
+
+
+
+    #high pair > one off
+
+    #high card > three off
+
+    #calculate straight and flush odds
+
+
+
+for hand in hands:
+    hand = drawCards(hand, 5)
