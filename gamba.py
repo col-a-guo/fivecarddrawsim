@@ -167,6 +167,8 @@ def hand_AI(hand):
         
 straights = 0
 flushes = 0
+raw_straights = 0
+raw_flushes = 0
 
 for round in range(1000):
 
@@ -176,6 +178,10 @@ for round in range(1000):
 
     for hand in hands:
         hand = drawCards(hand, 5)
+        if straightCheck(hand)[0] > 4:
+            raw_straights += 1
+        if flushCheck(hand)[0] > 4:
+            raw_flushes += 1
 
     for hand in hands:
         hand = hand_AI(hand)
@@ -184,4 +190,5 @@ for round in range(1000):
         if flushCheck(hand)[0] > 4:
             flushes += 1
 
-print(flushes, straights)
+print(straights, flushes)
+print(raw_straights, raw_flushes)
