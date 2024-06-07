@@ -2,6 +2,7 @@ import random
 suits = ['d','c','h','s']
 nums = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 
+
 def drawCard(hand):
     deck_size = len(deck)
     rand_card_i = random.randint(0,deck_size-1)
@@ -19,7 +20,7 @@ def straightCheck(hand):
     matches = [0 for i in range(9)]
     best_match = -1
     straight_start = -1
-    straights = [[num1+num2+1 for num1 in range(5)] for num2 in range(8)]
+    straights = [[num1+num2+1 for num1 in range(5)] for num2 in range(9)]
     straights.append([10,11,12,13,1])
     hand_nums = [card[0] for card in hand]
     for i, straight in enumerate(straights):
@@ -171,6 +172,8 @@ raw_straights = 0
 raw_flushes = 0
 three_flushes = 0
 three_flush_conversions = 0
+four_straights = 0
+four_straight_conversions = 0
 
 for round in range(100000):
 
@@ -178,10 +181,14 @@ for round in range(100000):
     hands = [[],[],[],[]]
 
     three_flush_hand = -1
+    four_straight_hand = -1
     for i, hand in enumerate(hands):
         hand = drawCards(hand, 5)
         if straightCheck(hand)[0] > 4:
             raw_straights += 1
+        if straightCheck(hand)[0] == 4:
+            four_straights += 1
+            four_straight_hand = i
         if flushCheck(hand)[0] > 4:
             raw_flushes += 1
         if flushCheck(hand)[0] == 3:
@@ -193,6 +200,8 @@ for round in range(100000):
         hand = hand_AI(hand)
         if straightCheck(hand)[0] > 4:
             straights += 1
+            if i == four_straight_hand:
+                four_straight_conversions += 1
         if flushCheck(hand)[0] > 4:
             flushes += 1
             if i == three_flush_hand:
@@ -206,3 +215,7 @@ print("3Flushes")
 print(three_flushes)
 print("3Flushes that became flushes")
 print(three_flush_conversions)
+print("4Straights")
+print(four_straights)
+print("4Straights that became straights")
+print(four_straight_conversions)
