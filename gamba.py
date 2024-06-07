@@ -170,7 +170,7 @@ flushes = 0
 raw_straights = 0
 raw_flushes = 0
 
-for round in range(1000):
+for round in range(100000):
 
     deck = [(num, suit) for suit in suits for num in nums]
     hands = [[],[],[],[]]
