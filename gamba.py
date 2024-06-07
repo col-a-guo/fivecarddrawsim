@@ -175,7 +175,7 @@ three_flush_conversions = 0
 four_straights = 0
 four_straight_conversions = 0
 
-for round in range(100000):
+for round in range(10000):
 
     deck = [(num, suit) for suit in suits for num in nums]
     hands = [[],[],[],[]]
@@ -186,9 +186,6 @@ for round in range(100000):
         hand = drawCards(hand, 5)
         if straightCheck(hand)[0] > 4:
             raw_straights += 1
-        if straightCheck(hand)[0] == 4:
-            four_straights += 1
-            four_straight_hand = i
         if flushCheck(hand)[0] > 4:
             raw_flushes += 1
         if flushCheck(hand)[0] == 3:
@@ -200,8 +197,6 @@ for round in range(100000):
         hand = hand_AI(hand)
         if straightCheck(hand)[0] > 4:
             straights += 1
-            if i == four_straight_hand:
-                four_straight_conversions += 1
         if flushCheck(hand)[0] > 4:
             flushes += 1
             if i == three_flush_hand:
@@ -215,7 +210,3 @@ print("3Flushes")
 print(three_flushes)
 print("3Flushes that became flushes")
 print(three_flush_conversions)
-print("4Straights")
-print(four_straights)
-print("4Straights that became straights")
-print(four_straight_conversions)
