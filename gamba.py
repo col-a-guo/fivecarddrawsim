@@ -198,7 +198,11 @@ for round in range(100000):
             if i == three_flush_hand:
                 three_flush_conversions += 1
 
+print("Straights, Flushes:")
 print(straights, flushes)
+print("First Draw Straights, Flushes:")
 print(raw_straights, raw_flushes)
+print("3Flushes")
 print(three_flushes)
+print("3Flushes that became flushes")
 print(three_flush_conversions)
